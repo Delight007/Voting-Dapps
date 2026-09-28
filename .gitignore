@@ -1,0 +1,10 @@
+.env
+.env.*
+!.env.example
+
+**/node_modules/
+**/.next/
+**/target/
+**/test-ledger/
+**/fresh-test-ledger/
+**/*-keypair.json

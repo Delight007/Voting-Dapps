@@ -1,0 +1,22 @@
+{
+  "name": "voting-program",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@anchor-lang/core": "^1.2.0",
+    "@solana/web3.js": "^1.99.0",
+    "@types/bn.js": "^5.2.0",
+    "@types/node": "^26.6.1",
+    "bn.js": "^5.2.5",
+    "tsx": "^4.23.13",
+    "typescript": "^5.9.3"
+  }
+}

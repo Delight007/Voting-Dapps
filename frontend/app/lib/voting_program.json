@@ -1,0 +1,1064 @@
+{
+  "address": "DWBmTLQ8gcWeJGQJLunUWTKbAjrBiTeunDKyZ3hCCbFQ",
+  "metadata": {
+    "name": "voting_program",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Created with Anchor"
+  },
+  "instructions": [
+    {
+      "name": "approve_candidate",
+      "discriminator": [
+        11,
+        191,
+        107,
+        29,
+        208,
+        81,
+        52,
+        40
+      ],
+      "accounts": [
+        {
+          "name": "election"
+        },
+        {
+          "name": "candidate",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  97,
+                  110,
+                  100,
+                  105,
+                  100,
+                  97,
+                  116,
+                  101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "election"
+              },
+              {
+                "kind": "account",
+                "path": "candidate.wallet",
+                "account": "Candidate"
+              }
+            ]
+          }
+        },
+        {
+          "name": "admin",
+          "signer": true,
+          "relations": [
+            "election"
+          ]
+        }
+      ],
+      "args": [
+        {
+          "name": "admin_message",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "approve_voter",
+      "discriminator": [
+        38,
+        88,
+        225,
+        240,
+        120,
+        4,
+        249,
+        62
+      ],
+      "accounts": [
+        {
+          "name": "election"
+        },
+        {
+          "name": "voter",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  111,
+                  116,
+                  101,
+                  114
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "election"
+              },
+              {
+                "kind": "account",
+                "path": "voter.wallet",
+                "account": "Voter"
+              }
+            ]
+          }
+        },
+        {
+          "name": "admin",
+          "signer": true,
+          "relations": [
+            "election"
+          ]
+        }
+      ],
+      "args": [
+        {
+          "name": "admin_message",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "cast_vote",
+      "discriminator": [
+        20,
+        212,
+        15,
+        189,
+        69,
+        180,
+        69,
+        151
+      ],
+      "accounts": [
+        {
+          "name": "election"
+        },
+        {
+          "name": "voter",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  111,
+                  116,
+                  101,
+                  114
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "election"
+              },
+              {
+                "kind": "account",
+                "path": "voter_wallet"
+              }
+            ]
+          }
+        },
+        {
+          "name": "candidate",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  97,
+                  110,
+                  100,
+                  105,
+                  100,
+                  97,
+                  116,
+                  101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "election"
+              },
+              {
+                "kind": "account",
+                "path": "candidate.wallet",
+                "account": "Candidate"
+              }
+            ]
+          }
+        },
+        {
+          "name": "voter_wallet",
+          "signer": true
+        },
+        {
+          "name": "clock",
+          "address": "SysvarC1ock11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "close_election",
+      "discriminator": [
+        62,
+        216,
+        57,
+        149,
+        90,
+        21,
+        40,
+        127
+      ],
+      "accounts": [
+        {
+          "name": "election",
+          "writable": true
+        },
+        {
+          "name": "admin",
+          "signer": true,
+          "relations": [
+            "election"
+          ]
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "initialize_election",
+      "discriminator": [
+        59,
+        166,
+        191,
+        126,
+        195,
+        0,
+        153,
+        168
+      ],
+      "accounts": [
+        {
+          "name": "election",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "admin",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "name": "description",
+          "type": "string"
+        },
+        {
+          "name": "start_time",
+          "type": "i64"
+        },
+        {
+          "name": "end_time",
+          "type": "i64"
+        }
+      ]
+    },
+    {
+      "name": "register_candidate",
+      "discriminator": [
+        91,
+        136,
+        96,
+        222,
+        242,
+        4,
+        160,
+        182
+      ],
+      "accounts": [
+        {
+          "name": "election",
+          "writable": true
+        },
+        {
+          "name": "candidate",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  97,
+                  110,
+                  100,
+                  105,
+                  100,
+                  97,
+                  116,
+                  101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "election"
+              },
+              {
+                "kind": "account",
+                "path": "candidate_wallet"
+              }
+            ]
+          }
+        },
+        {
+          "name": "candidate_wallet",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "about",
+          "type": "string"
+        },
+        {
+          "name": "avatar_url",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "register_voter",
+      "discriminator": [
+        229,
+        124,
+        185,
+        99,
+        118,
+        51,
+        226,
+        6
+      ],
+      "accounts": [
+        {
+          "name": "election",
+          "writable": true
+        },
+        {
+          "name": "voter",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  111,
+                  116,
+                  101,
+                  114
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "election"
+              },
+              {
+                "kind": "account",
+                "path": "voter_wallet"
+              }
+            ]
+          }
+        },
+        {
+          "name": "voter_wallet",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "bio",
+          "type": "string"
+        },
+        {
+          "name": "avatar_url",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "reject_candidate",
+      "discriminator": [
+        77,
+        44,
+        152,
+        31,
+        118,
+        79,
+        38,
+        139
+      ],
+      "accounts": [
+        {
+          "name": "election"
+        },
+        {
+          "name": "candidate",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  97,
+                  110,
+                  100,
+                  105,
+                  100,
+                  97,
+                  116,
+                  101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "election"
+              },
+              {
+                "kind": "account",
+                "path": "candidate.wallet",
+                "account": "Candidate"
+              }
+            ]
+          }
+        },
+        {
+          "name": "admin",
+          "signer": true,
+          "relations": [
+            "election"
+          ]
+        }
+      ],
+      "args": [
+        {
+          "name": "admin_message",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "reject_voter",
+      "discriminator": [
+        93,
+        31,
+        95,
+        247,
+        32,
+        157,
+        212,
+        115
+      ],
+      "accounts": [
+        {
+          "name": "election"
+        },
+        {
+          "name": "voter",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  111,
+                  116,
+                  101,
+                  114
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "election"
+              },
+              {
+                "kind": "account",
+                "path": "voter.wallet",
+                "account": "Voter"
+              }
+            ]
+          }
+        },
+        {
+          "name": "admin",
+          "signer": true,
+          "relations": [
+            "election"
+          ]
+        }
+      ],
+      "args": [
+        {
+          "name": "admin_message",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "transfer_admin",
+      "discriminator": [
+        42,
+        242,
+        66,
+        106,
+        228,
+        10,
+        111,
+        156
+      ],
+      "accounts": [
+        {
+          "name": "election",
+          "writable": true
+        },
+        {
+          "name": "admin",
+          "signer": true,
+          "relations": [
+            "election"
+          ]
+        }
+      ],
+      "args": [
+        {
+          "name": "new_admin",
+          "type": "pubkey"
+        }
+      ]
+    },
+    {
+      "name": "update_candidate_profile",
+      "discriminator": [
+        28,
+        138,
+        36,
+        230,
+        246,
+        185,
+        30,
+        45
+      ],
+      "accounts": [
+        {
+          "name": "election"
+        },
+        {
+          "name": "candidate",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  97,
+                  110,
+                  100,
+                  105,
+                  100,
+                  97,
+                  116,
+                  101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "election"
+              },
+              {
+                "kind": "account",
+                "path": "candidate_wallet"
+              }
+            ]
+          }
+        },
+        {
+          "name": "candidate_wallet",
+          "signer": true
+        }
+      ],
+      "args": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "about",
+          "type": "string"
+        },
+        {
+          "name": "avatar_url",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "update_election_period",
+      "discriminator": [
+        214,
+        10,
+        121,
+        28,
+        217,
+        131,
+        50,
+        89
+      ],
+      "accounts": [
+        {
+          "name": "election",
+          "writable": true
+        },
+        {
+          "name": "admin",
+          "signer": true,
+          "relations": [
+            "election"
+          ]
+        }
+      ],
+      "args": [
+        {
+          "name": "start_time",
+          "type": "i64"
+        },
+        {
+          "name": "end_time",
+          "type": "i64"
+        }
+      ]
+    },
+    {
+      "name": "update_voter_profile",
+      "discriminator": [
+        139,
+        113,
+        229,
+        250,
+        90,
+        74,
+        70,
+        124
+      ],
+      "accounts": [
+        {
+          "name": "election"
+        },
+        {
+          "name": "voter",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  111,
+                  116,
+                  101,
+                  114
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "election"
+              },
+              {
+                "kind": "account",
+                "path": "voter_wallet"
+              }
+            ]
+          }
+        },
+        {
+          "name": "voter_wallet",
+          "signer": true
+        }
+      ],
+      "args": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "bio",
+          "type": "string"
+        },
+        {
+          "name": "avatar_url",
+          "type": "string"
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "Candidate",
+      "discriminator": [
+        86,
+        69,
+        250,
+        96,
+        193,
+        10,
+        222,
+        123
+      ]
+    },
+    {
+      "name": "Election",
+      "discriminator": [
+        68,
+        191,
+        164,
+        85,
+        35,
+        105,
+        152,
+        202
+      ]
+    },
+    {
+      "name": "Voter",
+      "discriminator": [
+        241,
+        93,
+        35,
+        191,
+        254,
+        147,
+        17,
+        202
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "Unauthorized",
+      "msg": "Only the election admin can perform this action"
+    },
+    {
+      "code": 6001,
+      "name": "ElectionNotActive",
+      "msg": "The election is not active"
+    },
+    {
+      "code": 6002,
+      "name": "ElectionNotStarted",
+      "msg": "The election has not started yet"
+    },
+    {
+      "code": 6003,
+      "name": "ElectionEnded",
+      "msg": "The election has already ended"
+    },
+    {
+      "code": 6004,
+      "name": "InvalidElectionTime",
+      "msg": "Election start time must be before end time"
+    },
+    {
+      "code": 6005,
+      "name": "CandidateNotApproved",
+      "msg": "Candidate is not approved"
+    },
+    {
+      "code": 6006,
+      "name": "VoterNotApproved",
+      "msg": "Voter is not approved"
+    },
+    {
+      "code": 6007,
+      "name": "AlreadyVoted",
+      "msg": "Voter has already voted"
+    },
+    {
+      "code": 6008,
+      "name": "InvalidCandidate",
+      "msg": "Candidate wallet does not match the registered wallet"
+    },
+    {
+      "code": 6009,
+      "name": "InvalidVoter",
+      "msg": "Voter wallet does not match the registered wallet"
+    },
+    {
+      "code": 6010,
+      "name": "InvalidCandidateStatus",
+      "msg": "Invalid candidate status"
+    },
+    {
+      "code": 6011,
+      "name": "InvalidVoterStatus",
+      "msg": "Invalid voter status"
+    },
+    {
+      "code": 6012,
+      "name": "StringTooLong",
+      "msg": "String exceeds the maximum allowed length"
+    },
+    {
+      "code": 6013,
+      "name": "CounterOverflow",
+      "msg": "Vote count overflow"
+    },
+    {
+      "code": 6014,
+      "name": "InvalidAdmin",
+      "msg": "New admin cannot be the default address"
+    }
+  ],
+  "types": [
+    {
+      "name": "Candidate",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "wallet",
+            "docs": [
+              "Candidate wallet address"
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "name",
+            "docs": [
+              "Display name"
+            ],
+            "type": "string"
+          },
+          {
+            "name": "about",
+            "docs": [
+              "Candidate manifesto / about section"
+            ],
+            "type": "string"
+          },
+          {
+            "name": "vote_count",
+            "docs": [
+              "Number of votes received"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "status",
+            "docs": [
+              "Admin approval status"
+            ],
+            "type": {
+              "defined": {
+                "name": "Status"
+              }
+            }
+          },
+          {
+            "name": "admin_message",
+            "docs": [
+              "Message from admin (approval or rejection reason)"
+            ],
+            "type": "string"
+          },
+          {
+            "name": "avatar_url",
+            "docs": [
+              "Avatar image URL (Cloudinary/IPFS)"
+            ],
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Election",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "title",
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "type": "string"
+          },
+          {
+            "name": "admin",
+            "type": "pubkey"
+          },
+          {
+            "name": "is_active",
+            "type": "bool"
+          },
+          {
+            "name": "start_time",
+            "type": "i64"
+          },
+          {
+            "name": "end_time",
+            "type": "i64"
+          },
+          {
+            "name": "total_candidates",
+            "type": "u64"
+          },
+          {
+            "name": "total_voters",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Status",
+      "docs": [
+        "Approval status controlled by the admin"
+      ],
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Pending"
+          },
+          {
+            "name": "Approved"
+          },
+          {
+            "name": "Rejected"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Voter",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "wallet",
+            "docs": [
+              "Voter wallet address"
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "name",
+            "docs": [
+              "Display name"
+            ],
+            "type": "string"
+          },
+          {
+            "name": "bio",
+            "docs": [
+              "Short bio"
+            ],
+            "type": "string"
+          },
+          {
+            "name": "has_voted",
+            "docs": [
+              "Prevents double voting"
+            ],
+            "type": "bool"
+          },
+          {
+            "name": "status",
+            "docs": [
+              "Admin approval status"
+            ],
+            "type": {
+              "defined": {
+                "name": "Status"
+              }
+            }
+          },
+          {
+            "name": "admin_message",
+            "docs": [
+              "Message from admin"
+            ],
+            "type": "string"
+          },
+          {
+            "name": "avatar_url",
+            "docs": [
+              "Avatar image URL"
+            ],
+            "type": "string"
+          }
+        ]
+      }
+    }
+  ],
+  "constants": [
+    {
+      "name": "CANDIDATE_SEED",
+      "type": "bytes",
+      "value": "[99, 97, 110, 100, 105, 100, 97, 116, 101]"
+    },
+    {
+      "name": "ELECTION_SEED",
+      "type": "bytes",
+      "value": "[101, 108, 101, 99, 116, 105, 111, 110]"
+    },
+    {
+      "name": "VOTER_SEED",
+      "type": "bytes",
+      "value": "[118, 111, 116, 101, 114]"
+    }
+  ]
+}
