@@ -4,6 +4,7 @@ import { useAnchorWallet, useWallet } from "@solana/wallet-adapter-react";
 import { PublicKey } from "@solana/web3.js";
 import { useEffect, useState } from "react";
 import { FaCheck, FaPlay, FaTrophy } from "react-icons/fa";
+import { ErrorToast } from "../components/toastify";
 import {
   ELECTION_ADDRESS,
   getVoterPda,
@@ -192,11 +193,7 @@ export default function VotePage() {
           </div>
         </div>
 
-        {voteError && (
-          <p className="mb-6 rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-300">
-            {voteError}
-          </p>
-        )}
+        {voteError && <ErrorToast message={voteError} />}
 
         {/* Candidate Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">

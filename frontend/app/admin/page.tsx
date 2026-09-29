@@ -14,6 +14,7 @@ import {
   FaUserCheck,
   FaUsers,
 } from "react-icons/fa";
+import { ErrorToast } from "../components/toastify";
 import {
   ELECTION_ADDRESS,
   getVotingProgram,
@@ -563,17 +564,9 @@ export default function AdminPage() {
           </button>
         </div>
 
-        {loadError && (
-          <div className="mb-6 rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-300">
-            {loadError}
-          </div>
-        )}
+        {loadError && <ErrorToast message={loadError} />}
 
-        {actionError && (
-          <div className="mb-6 rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-300">
-            {actionError}
-          </div>
-        )}
+        {actionError && <ErrorToast message={actionError} />}
 
         {/* Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
@@ -758,11 +751,7 @@ export default function AdminPage() {
                 />
               </div>
 
-              {periodError && (
-                <p className="rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-300">
-                  {periodError}
-                </p>
-              )}
+              {periodError && <ErrorToast message={periodError} />}
 
               <div className="flex justify-end gap-3 pt-2">
                 <button
@@ -827,11 +816,7 @@ export default function AdminPage() {
                 />
               </div>
 
-              {transferError && (
-                <p className="rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-300">
-                  {transferError}
-                </p>
-              )}
+              {transferError && <ErrorToast message={transferError} />}
 
               <div className="flex justify-end gap-3 pt-2">
                 <button
@@ -883,11 +868,7 @@ export default function AdminPage() {
               a new election when you want to run another vote.
             </div>
 
-            {closeError && (
-              <p className="mt-4 rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-300">
-                {closeError}
-              </p>
-            )}
+            {closeError && <ErrorToast message={closeError} />}
 
             <div className="mt-6 flex justify-end gap-3">
               <button

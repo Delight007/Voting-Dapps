@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { FaChartLine, FaSync, FaTrophy } from "react-icons/fa";
 
+import { ErrorToast } from "../components/toastify";
 import { ELECTION_ADDRESS, getVotingProgram } from "../lib/solana";
 
 type Candidate = {
@@ -138,11 +139,7 @@ export default function ResultsPage() {
           </button>
         </div>
 
-        {error && (
-          <div className="mb-8 rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-300">
-            {error}
-          </div>
-        )}
+        {error && <ErrorToast message={error} />}
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
           {stats.map((stat) => (

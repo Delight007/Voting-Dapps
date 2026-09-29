@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { startTransition, Suspense, useEffect, useState } from "react";
 import { FaCheck, FaClock, FaEdit, FaTimes } from "react-icons/fa";
 
+import { ErrorToast } from "../components/toastify";
 import {
   ELECTION_ADDRESS,
   getCandidatePda,
@@ -545,9 +546,7 @@ function RegistrationModal({
               )}
             </div>
 
-            {uploadError && (
-              <p className="mt-2 text-sm text-red-400">{uploadError}</p>
-            )}
+            {uploadError && <ErrorToast message={uploadError} />}
           </div>
 
           <div className="flex justify-end gap-3 pt-2">
@@ -762,11 +761,7 @@ function ProfileUpdateModal({
             </div>
           </div>
 
-          {formError && (
-            <p className="rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-300">
-              {formError}
-            </p>
-          )}
+          {formError && <ErrorToast message={formError} />}
 
           <div className="flex justify-end gap-3 pt-2">
             <button

@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { FaCheck, FaFilter, FaSearch, FaTrophy, FaUsers } from "react-icons/fa";
 
+import { ErrorToast } from "../components/toastify";
 import { getVotingProgram } from "../lib/solana";
 
 type Candidate = {
@@ -190,8 +191,10 @@ export default function CandidatesPage() {
           </div>
         ) : error ? (
           <div className="text-center py-24 text-red-400">
+            <ErrorToast message={error} />
             <FaUsers className="text-5xl mx-auto mb-4 opacity-30" />
-            <p className="text-lg font-medium">{error}</p>
+            <p className="text-lg font-medium">Candidates are unavailable.</p>
+            <p className="text-sm mt-1">Reload the page to try again.</p>
           </div>
         ) : filtered.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">

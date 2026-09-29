@@ -18,6 +18,7 @@ import {
   getVoterPda,
   getVotingProgram,
 } from "../lib/solana";
+import { ErrorToast } from "./toastify";
 
 type RegistrationLookup = {
   walletAddress: string;
@@ -228,7 +229,7 @@ export default function HeroSection() {
             </span>
           </div>
 
-          {error && <span className="text-xs text-red-400">{error}</span>}
+          {error && <ErrorToast message={error} />}
         </div>
 
         <div className="flex items-center gap-1.5 px-4 py-2 rounded-full bg-green-500/10 border border-green-500/30 text-green-400 font-bold text-sm">
@@ -237,17 +238,17 @@ export default function HeroSection() {
         </div>
       </div>
 
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
         {stats.map((stat) => (
           <div
             key={stat.label}
-            className="bg-white/[0.04] border border-white/[0.07] rounded-2xl py-6 px-4 flex flex-col items-center gap-2"
+            className="min-w-0 bg-white/[0.04] border border-white/[0.07] rounded-2xl py-5 px-3 sm:py-6 sm:px-4 flex flex-col items-center gap-2"
           >
             <span className={stat.color}>{stat.icon}</span>
-            <span className="text-3xl font-extrabold text-slate-100">
+            <span className="max-w-full break-words text-center text-2xl font-extrabold leading-tight text-slate-100 sm:text-3xl">
               {stat.value}
             </span>
-            <span className="text-xs text-slate-500 font-medium">
+            <span className="text-center text-[11px] font-medium leading-tight text-slate-500 sm:text-xs">
               {stat.label}
             </span>
           </div>

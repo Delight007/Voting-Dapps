@@ -58,6 +58,8 @@ export default function Navbar() {
           <Link key={link.label} href={link.link} passHref>
             <button
               //   key={link.label}
+              aria-label={link.label}
+              title={link.label}
               className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-sm font-medium transition-all
                 ${
                   link.active
