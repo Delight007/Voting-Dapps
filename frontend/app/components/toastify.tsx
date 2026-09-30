@@ -6,6 +6,7 @@ import { ToastContainer, toast } from "react-toastify";
 export function ToastViewport() {
   return (
     <ToastContainer
+      className="toast-viewport"
       position="top-right"
       autoClose={4500}
       closeOnClick

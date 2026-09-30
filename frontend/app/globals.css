@@ -105,7 +105,15 @@ body.app-motion textarea {
   box-shadow: 0 16px 40px rgb(0 0 0 / 28%);
 }
 
+.Toastify__toast-container--top-right.toast-viewport {
+  top: 5rem;
+}
+
 @media (max-width: 767px) {
+  .Toastify__toast-container--top-right.toast-viewport {
+    top: 8rem;
+  }
+
   body.app-motion nav.sticky {
     height: auto;
     min-height: 4rem;
